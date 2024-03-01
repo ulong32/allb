@@ -88,30 +88,31 @@ function sort(mode, sortOrder) {
 }
 
 // 無し→desc desc→asc asc→desc
-$(".sortEnabled").on("click", function() {
-    let thisClass = $(this).attr("class");
-    let thisVal = this.textContent;
-    let sortEnabledElements = document.getElementsByClassName("sortEnabled");
-    if (thisClass.includes("desc")) {
-        for (let i = 0; i < sortEnabledElements.length; i++) {
-            sortEnabledElements[i].classList.remove("asc");
-            sortEnabledElements[i].classList.remove("desc");
+document.querySelectorAll(".sortEnabled").forEach(element => {
+    element.addEventListener("click", function() {
+        let thisVal = this.textContent;
+        let sortEnabledElements = document.getElementsByClassName("sortEnabled");
+        if (this.classList.contains("desc")) {
+            for (let i = 0; i < sortEnabledElements.length; i++) {
+                sortEnabledElements[i].classList.remove("asc");
+                sortEnabledElements[i].classList.remove("desc");
+            }
+            this.classList.add("asc");
+            sort(thisVal, "asc");
+            lastSort = thisVal;
+            lastOrder = "asc";
+        } else {
+            for (let i = 0; i < sortEnabledElements.length; i++) {
+                sortEnabledElements[i].classList.remove("asc");
+                sortEnabledElements[i].classList.remove("desc");
+            }
+            this.classList.add("desc");
+            sort(thisVal, "desc");
+            lastSort = thisVal;
+            lastOrder = "desc";
         }
-        $(this).addClass("asc");
-        sort(thisVal, "asc");
-        lastSort = thisVal;
-        lastOrder = "asc";
-    } else {
-        for (let i = 0; i < sortEnabledElements.length; i++) {
-            sortEnabledElements[i].classList.remove("asc");
-            sortEnabledElements[i].classList.remove("desc");
-        }
-        $(this).addClass("desc");
-        sort(thisVal, "desc");
-        lastSort = thisVal;
-        lastOrder = "desc";
-    }
-});
+    });
+})
 
 let lastSort = "";
 let lastOrder = "asc";

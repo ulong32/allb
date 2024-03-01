@@ -237,43 +237,63 @@ makeTable();
 
 
 // デフォ特性をレギオンマッチに
-$(".vsh").css({ "display":"none" });
-$(".lm").css({ "display":"table-cell" });
-$(".mode-btn.mode-vsh").removeClass("active");
-$(".mode-btn.mode-lm").addClass("active");
+document.querySelectorAll(".vsh").forEach(element => {
+    element.style.display = "none";
+});
+document.querySelectorAll(".lm").forEach(element => {
+    element.style.display = "table-cell";
+});
+document.querySelector(".mode-btn.mode-vsh").classList.remove("active");
+document.querySelector(".mode-btn.mode-lm").classList.add("active");
 let modeSelection = "レギオンマッチ";
 
 /*
 // デフォ特性を対ヒュージに
-$(".vsh").css({ "display":"table-cell" });
-$(".lm").css({ "display":"none" });
-$(".mode-btn.mode-vsh").addClass("active");
-$(".mode-btn.mode-lm").removeClass("active");
+document.querySelectorAll(".vsh").forEach(element => {
+    element.style.display = "table-cell";
+});
+document.querySelectorAll(".lm").forEach(element => {
+    element.style.display = "none";
+});
+document.querySelector(".mode-btn.mode-vsh").classList.add("active");
+document.querySelector(".mode-btn.mode-lm").classList.remove("active");
 let modeSelection = "対ヒュージ";
 */
 /*
 // デフォを両方表示
-$(".vsh").css({ "display":"table-cell" });
-$(".lm").css({ "display":"table-cell" });
-$(".mode-btn.mode-vsh").addClass("active");
-$(".mode-btn.mode-lm").addClass("active");
+document.querySelectorAll(".vsh").forEach(element => {
+    element.style.display = "table-cell";
+});
+document.querySelectorAll(".lm").forEach(element => {
+    element.style.display = "table-cell";
+});
+document.querySelector(".mode-btn.mode-vsh").classList.add("active");
+document.querySelector(".mode-btn.mode-lm").classList.add("active");
 */
 
 // モード変更　再並べ替えが必要な場合あり
 function changeMode(mode) {
     if (mode == "vsh") {
-        $(".vsh").css({ "display":"table-cell" });
-        $(".lm").css({ "display":"none" });
-        $(".mode-btn.mode-vsh").addClass("active");
-        $(".mode-btn.mode-lm").removeClass("active");
+        document.querySelectorAll(".vsh").forEach(element => {
+            element.style.display = "table-cell";
+        });
+        document.querySelectorAll(".lm").forEach(element => {
+            element.style.display = "none";
+        });
+        document.querySelector(".mode-btn.mode-vsh").classList.add("active");
+        document.querySelector(".mode-btn.mode-lm").classList.remove("active");
         modeSelection = "対ヒュージ";
         sort(lastSort, lastOrder);
     }
     if (mode == "lm") {
-        $(".vsh").css({ "display":"none" });
-        $(".lm").css({ "display":"table-cell" });
-        $(".mode-btn.mode-vsh").removeClass("active");
-        $(".mode-btn.mode-lm").addClass("active");
+        document.querySelectorAll(".vsh").forEach(element => {
+            element.style.display = "none";
+        });
+        document.querySelectorAll(".lm").forEach(element => {
+            element.style.display = "table-cell";
+        });
+        document.querySelector(".mode-btn.mode-vsh").classList.remove("active");
+        document.querySelector(".mode-btn.mode-lm").classList.add("active");
         modeSelection = "レギオンマッチ";
         sort(lastSort, lastOrder);
     }

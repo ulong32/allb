@@ -1,3 +1,5 @@
+import { val } from "../js/jqueryCompatible.js";
+
 let categorySelection = [];
 let getwaySelection = [];
 let paramSelection = [];
@@ -91,89 +93,93 @@ function filter() {
     }
 }
 
-$(".select-btn.category").on("click", function() {
-    let selection = categorySelection;
-	let val = $(this).val();
-    let thisClass = $(this).attr("class");
-    if (thisClass.includes("active")) {
-        $(this).removeClass("active");
-        for (let i = 0; i < selection.length; i++) {
-            if (selection[i] == val) {
-                selection.splice(i, 1);
-                break;
+document.querySelectorAll(".select-btn.category").forEach(element => {
+    element.addEventListener("click", function() {
+        let selection = categorySelection;
+	    let value = val(this);
+        let thisClass = this.getAttribute("class");
+        if (this.classList.contains("active")) {
+            this.classList.remove("active");
+            for (let i = 0; i < selection.length; i++) {
+                if (selection[i] == value) {
+                    selection.splice(i, 1);
+                    break;
+                }
             }
+        } else {
+            this.classList.add("active");
+            selection.push(value);
         }
-    } else {
-        $(this).addClass("active");
-        selection.push(val);
-    }
-    filter();
+        filter();
+    });
 });
 
-$(".select-btn.getway").on("click", function() {
-    let selection = getwaySelection;
-	let val = $(this).val();
-    let thisClass = $(this).attr("class");
-    if (thisClass.includes("active")) {
-        $(this).removeClass("active");
-        for (let i = 0; i < selection.length; i++) {
-            if (selection[i] == val) {
-                selection.splice(i, 1);
-                break;
+document.querySelectorAll(".select-btn.getway").forEach(element => {
+    element.addEventListener("click", function() {
+        let selection = getwaySelection;
+	    let value = val(this);
+        if (this.classList.contains("active")) {
+            this.classList.remove("active");
+            for (let i = 0; i < selection.length; i++) {
+                if (selection[i] == value) {
+                    selection.splice(i, 1);
+                    break;
+                }
             }
+        } else {
+            this.classList.add("active");
+            selection.push(value);
         }
-    } else {
-        $(this).addClass("active");
-        selection.push(val);
-    }
-    filter();
+        filter();
+        });
+    });
+
+document.querySelectorAll(".select-btn.param").forEach(element => {
+    element.addEventListener("click", function() {
+        let selection = paramSelection;
+	    let value = val(this);
+        if (this.classList.contains("active")) {
+            this.classList.remove("active");
+            for (let i = 0; i < selection.length; i++) {
+                if (selection[i] == value) {
+                    selection.splice(i, 1);
+                    break;
+                }
+            }
+        } else {
+            this.classList.add("active");
+            selection.push(value);
+        }
+        filter();
+    });
 });
 
-$(".select-btn.param").on("click", function() {
-    let selection = paramSelection;
-	let val = $(this).val();
-    let thisClass = $(this).attr("class");
-    if (thisClass.includes("active")) {
-        $(this).removeClass("active");
-        for (let i = 0; i < selection.length; i++) {
-            if (selection[i] == val) {
-                selection.splice(i, 1);
-                break;
+document.querySelectorAll(".select-btn.zokusei").forEach(element => {
+    element.addEventListener("click", function() {
+        let selection = zokuseiSelection;
+	    let value = val(this);
+        if (this.classList.contains("active")) {
+            this.classList.remove("active");
+            for (let i = 0; i < selection.length; i++) {
+                if (selection[i] == value) {
+                    selection.splice(i, 1);
+                    break;
+                }
             }
+        } else {
+            this.classList.add("active");
+            selection.push(value);
         }
-    } else {
-        $(this).addClass("active");
-        selection.push(val);
-    }
-    filter();
+        filter();
+    });
 });
 
-$(".select-btn.zokusei").on("click", function() {
-    let selection = zokuseiSelection;
-	let val = $(this).val();
-    let thisClass = $(this).attr("class");
-    if (thisClass.includes("active")) {
-        $(this).removeClass("active");
-        for (let i = 0; i < selection.length; i++) {
-            if (selection[i] == val) {
-                selection.splice(i, 1);
-                break;
-            }
-        }
-    } else {
-        $(this).addClass("active");
-        selection.push(val);
-    }
-    filter();
-});
-
-$(".select-btn.check-only").on("click", function() {
-    let thisClass = $(this).attr("class");
-    if (thisClass.includes("active")) {
-        $(this).removeClass("active");
+document.querySelector(".select-btn.check-only").addEventListener("click", function() {
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
         checkOnly = false;
     } else {
-        $(this).addClass("active");
+        this.classList.add("active");
         checkOnly = true;
     }
     filter();
